@@ -1,0 +1,11 @@
+#!/bin/bash
+echo `date` > /logs.log
+aws s3 sync s3://greavr-setup/ /home/ec2-user >> /logs.log
+
+cd /home/ec2-user
+
+chmod +x *.sh >> /logs.log
+
+for f in *.sh; do
+  ./$f >> /logs.log
+done
